@@ -74,7 +74,7 @@ module.exports = (dato, root, i18n) => {
       dir.createPost(`${post.slug}.md`, 'yaml', {
         frontmatter: {
           title: post.title,
-          featuredImage: post.featuredImage.url({ w: 450, fm: 'jpg', auto: 'compress' }),
+          cover: post.cover.url({ w: 450, fm: 'jpg', auto: 'compress' }),
           summary: post.summary,
           seoMetaTags: toHtml(post.seoMetaTags),
           // extraImages: post.gallery.map(item =>
