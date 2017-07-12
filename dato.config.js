@@ -43,8 +43,6 @@ module.exports = (dato, root, i18n) => {
   root.createDataFile('data/settings.yml', 'yaml', {
     name: dato.site.globalSeo.siteName,
     language: dato.site.locales[0],
-    intro: dato.home.introText,
-    copyright: dato.home.copyright,
     // iterate over all the `social_profile` item types
     socialProfiles: dato.socialProfiles.map(profile => {
       return {
@@ -52,8 +50,7 @@ module.exports = (dato, root, i18n) => {
         url: profile.url,
       };
     }),
-    faviconMetaTags: toHtml(dato.site.faviconMetaTags),
-    seoMetaTags: toHtml(dato.home.seoMetaTags)
+    faviconMetaTags: toHtml(dato.site.faviconMetaTags)
   });
 
   // Create a markdown file with content coming from the `about_page` item
@@ -70,26 +67,23 @@ module.exports = (dato, root, i18n) => {
   });
 
   // Create a `work` directory (or empty it if already exists)...
-  root.directory('content/work', dir => {
+  root.directory('content/post', dir => {
     // ...and for each of the works stored online...
-    dato.works.forEach((work, index) => {
+    dato.posts.forEach((post, index) => {
       // ...create a markdown file with all the metadata in the frontmatter
-      dir.createPost(`${work.slug}.md`, 'yaml', {
+      dir.createPost(`${post.slug}.md`, 'yaml', {
         frontmatter: {
-          title: work.title,
-          coverImage: work.coverImage.url({ w: 450, fm: 'jpg', auto: 'compress' }),
-          image: work.coverImage.url({ fm: 'jpg', auto: 'compress' }),
-          detailImage: work.coverImage.url({ w: 600, fm: 'jpg', auto: 'compress' }),
-          excerpt: work.excerpt,
-          seoMetaTags: toHtml(work.seoMetaTags),
-          extraImages: work.gallery.map(item =>
-            item.url({ h: 300, fm: 'jpg', auto: 'compress' })
-          ),
+          title: post.title,
+          featuredImage: post.featuredImage.url({ w: 450, fm: 'jpg', auto: 'compress' }),
+          summary: post.summary,
+          seoMetaTags: toHtml(post.seoMetaTags),
+          // extraImages: post.gallery.map(item =>
+          //   item.url({ h: 300, fm: 'jpg', auto: 'compress' })
+          // ),
           weight: index,
         },
-        content: work.description
+        content: post.body
       });
     });
   });
 };
-
