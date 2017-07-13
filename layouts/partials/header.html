@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="<%= settings.language %>">
+<html lang="en">
   <head>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
+
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {{ if eq .Site.Params.env "production" }}
-      <link rel="stylesheet" href="/assets/all.css">
-    {{ end }}
+    <link rel="stylesheet" href="/assets/all.css">
     {{ .Site.Data.settings.faviconMetaTags | safeHTML }}
     {{ if isset .Params "seometatags" }}
       {{ .Params.seometatags | safeHTML }}
     {{ else }}
-    
+
     {{ end }}
+
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#2F3BA2">
+    
   </head>
   <body>
+
+    <header>
+
+    </header>
+
     <div class="container">
       <div class="container__sidebar">
         <div class="sidebar">

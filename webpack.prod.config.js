@@ -1,35 +1,31 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const extractSass = new ExtractTextPlugin('all.css');
 
 module.exports = {
-  entry: {
-    all: __dirname + '/assets/js/index.js',
-  },
-  resolve: {
-    root: __dirname + '/assets/js',
-  },
+  entry: ['./assets/js/main.js', './assets/sass/main.scss'],
   output: {
-    path: __dirname + '/public/assets',
-    filename: '[name].js',
-    publicPath: '/assets',
+    filename: './assets/all.js'
   },
   module: {
-    loaders: [
-      {
-        test: /.*\.sass$/,
-        loader: extractSass.extract(['css', 'sass', 'import-glob'])
-      },
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: { presets: ['es2015'] }
+      },
+      {
+        test: /\.(sass|scss)$/,
+        loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'sass-loader'])
       }
     ]
   },
   plugins: [
-    extractSass,
+    new ExtractTextPlugin({
+      filename: './assets/all.css',
+      allChunks: true,
+    }),
+
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
@@ -39,6 +35,5 @@ module.exports = {
       compress: { warnings: false },
       comments: false,
     }),
-  ]
+  ],
 };
-
