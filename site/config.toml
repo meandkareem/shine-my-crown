@@ -1,5 +1,22 @@
 baseurl = "/"
 languageCode = "en-us"
+Paginate = 10
+
+
+[[menu.main]]
+    name = "home"
+    identifier = "home"
+    url = "/"
+    weight = -100
+[[menu.main]]
+    name = "lifestyle"
+    url = "/categories/lifestyle"
+    weight = -99
+
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
 
 # datocms:start
 title = "Shine My Crown"

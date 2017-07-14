@@ -2,23 +2,27 @@
 
 {{ $paginator := .Paginate (where .Data.Pages "Type" "post") }}
 
-<div class="showcase is-loading" {{ if .Paginator.HasNext }}data-next-url="{{ .Paginator.Next.URL }}"{{ end }}>
+<div class="showcase" {{ if .Paginator.HasNext }}data-next-url="{{ .Paginator.Next.URL }}"{{ end }}>
   {{ range $paginator.Pages }}
-    <div class="showcase__item">
-      <figure class="card">
-        <a href="{{ .Permalink }}" class="card__image">
+
+
+        <a href="{{ .Permalink }}">
           <img src="{{ .Params.cover }}" alt="{{.Params.Title}}">
         </a>
-        <figcaption class="card__caption">
-          <h6 class="card__title">
+
+
             <a href="{{ .Permalink }}">{{ .Title }}</a>
-          </h6>
-          <div class="card__description">
+
+          <div class="">
             <p>{{ .Params.summary }}</p>
           </div>
-        </figcaption>
-      </figure>
-    </div>
+
+          <ul id="tags">
+  {{ range .Params.categories }}
+    <li><a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
+  {{ end }}
+</ul>
+
   {{ end }}
 </div>
 

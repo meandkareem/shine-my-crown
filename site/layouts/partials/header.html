@@ -1,62 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta charset="utf-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/css/main.css"/>
+<head>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta charset="utf-8">
 
-    {{ .Site.Data.settings.faviconMetaTags | safeHTML }}
-    {{ if isset .Params "seometatags" }}
-      {{ .Params.seometatags | safeHTML }}
-    {{ else }}
+  <title>{{ .Site.Data.settings.name}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="/css/main.css" /> {{ .Site.Data.settings.faviconMetaTags | safeHTML }} {{ if isset .Params "seometatags" }} {{ .Params.seometatags | safeHTML }} {{ else }} {{ end }}
 
-    {{ end }}
+</head>
 
-  </head>
-  <body>
+<body>
 
-    <header>
+  <header>
+    {{ partial "navigation.html" . }}
+  </header>
 
-    </header>
-
-    <div class="container">
-      <div class="container__sidebar">
-        <div class="sidebar">
-          <h6 class="sidebar__title">
-            <a href="/">{{ .Site.Data.settings.name }}</a>
-          </h6>
-
-          <div class="sidebar__intro">
-          </div>
-
-          <ul class="sidebar__menu">
-            {{ $currentNode := . }}
-            {{ range .Site.Menus.main }}
-              <li{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} class="is-active"{{end}}>
-                <a href="{{ .URL }}">{{ .Name }}</a>
-              </li>
-            {{ end }}
-          </ul>
-
-          <p class="sidebar__social">
-            {{ range .Site.Data.settings.socialProfiles }}
-              <a href="{{ .url }}" class="social social--{{ .type }}"></a>
-            {{ end }}
-          </p>
+  <div class="container">
 
 
-        </div>
-      </div>
-      <div class="container__body">
-        <div class="container__mobile-header">
-          <div class="mobile-header">
-            <div class="mobile-header__menu">
-              <a href="#" class="hamburger"></a>
-            </div>
-            <div class="mobile-header__logo">
-              <a href="/index.html">{{ .Site.Data.settings.name }}</a>
-            </div>
-          </div>
-        </div>
+
+  </div>

@@ -69,12 +69,13 @@ module.exports = (dato, root, i18n) => {
     // ...and for each of the works stored online...
     dato.posts.forEach((post, index) => {
       // ...create a markdown file with all the metadata in the frontmatter
-      dir.createPost('${post.slug}.md', 'yaml', {
+      dir.createPost(`${post.slug}.md`, 'yaml', {
         frontmatter: {
           title: post.title,
           cover: post.cover.url({ w: 450, fm: 'jpg', auto: 'compress' }),
           summary: post.summary,
           seoMetaTags: toHtml(post.seoMetaTags),
+          categories: post.category.map(cat => cat.name),
           // extraImages: post.gallery.map(item =>
           //   item.url({ h: 300, fm: 'jpg', auto: 'compress' })
           // ),

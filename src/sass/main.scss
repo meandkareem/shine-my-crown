@@ -1,14 +1,33 @@
 @import "reset";
 @import "variables";
+@import "typography";
 
 html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
-.container{
+html,
+body {
+  height: 100%;
+}
 
+body {
+  margin: 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
+
+.container{
+  display: flex;
+  margin: 0 auto;
 }
