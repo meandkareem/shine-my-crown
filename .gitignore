@@ -1,6 +1,5 @@
 .env
 node_modules/
-site/content
-site/data
-npm-debug.log
 dist/
+/site/content/*
+/site/data/*
