@@ -34,8 +34,10 @@
     "gulp-util": "^3.0.7",
     "html-tag": "^1.0.0",
     "imports-loader": "^0.7.1",
+    "jquery": "^3.2.1",
     "postcss-cssnext": "^2.7.0",
     "postcss-import": "^10.0.0",
+    "slideout": "^1.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.6.0",
     "whatwg-fetch": "^1.0.0"

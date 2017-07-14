@@ -5,18 +5,9 @@
 <div class="showcase" {{ if .Paginator.HasNext }}data-next-url="{{ .Paginator.Next.URL }}"{{ end }}>
   {{ range $paginator.Pages }}
 
-
-        <a href="{{ .Permalink }}">
           <img src="{{ .Params.cover }}" alt="{{.Params.Title}}">
-        </a>
-
-
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
-
-          <div class="">
-            <p>{{ .Params.summary }}</p>
-          </div>
-
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <p>{{ .Params.summary }}</p>
           <ul id="tags">
   {{ range .Params.categories }}
     <li><a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
