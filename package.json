@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "hugo": "gulp hugo",
-    "build": "gulp build && dato dump",
+    "build": "dato dump && gulp build",
     "build-preview": "gulp build-preview",
     "start": "dato check && gulp server && dato dump",
     "lint": "eslint src"
