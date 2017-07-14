@@ -1,0 +1,6 @@
+baseurl = "/"
+languageCode = "en-us"
+
+# datocms:start
+title = "Shine My Crown"
+# datocms:end

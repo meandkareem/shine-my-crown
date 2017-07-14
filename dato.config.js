@@ -32,15 +32,13 @@ module.exports = (dato, root, i18n) => {
 
   // Add to the existing Hugo config files some properties coming from data
   // stored on DatoCMS
-  ['config.dev.toml', 'config.prod.toml'].forEach(file => {
-    root.addToDataFile(file, 'toml', {
+
+  root.addToDataFile('site/config.toml', 'toml', {
       title: dato.site.globalSeo.siteName,
-      languageCode: i18n.locale
-    });
   });
 
   // Create a YAML data file to store global data about the site
-  root.createDataFile('data/settings.yml', 'yaml', {
+  root.createDataFile('site/data/settings.yml', 'yaml', {
     name: dato.site.globalSeo.siteName,
     language: dato.site.locales[0],
     // iterate over all the `social_profile` item types
@@ -55,7 +53,7 @@ module.exports = (dato, root, i18n) => {
 
   // Create a markdown file with content coming from the `about_page` item
   // type stored in DatoCMS
-  root.createPost(`content/about.md`, 'yaml', {
+  root.createPost('site/content/about.md', 'yaml', {
     frontmatter: {
       title: dato.aboutPage.title,
       subtitle: dato.aboutPage.subtitle,
@@ -67,11 +65,11 @@ module.exports = (dato, root, i18n) => {
   });
 
   // Create a `work` directory (or empty it if already exists)...
-  root.directory('content/post', dir => {
+  root.directory('site/content/post', dir => {
     // ...and for each of the works stored online...
     dato.posts.forEach((post, index) => {
       // ...create a markdown file with all the metadata in the frontmatter
-      dir.createPost(`${post.slug}.md`, 'yaml', {
+      dir.createPost('${post.slug}.md', 'yaml', {
         frontmatter: {
           title: post.title,
           cover: post.cover.url({ w: 450, fm: 'jpg', auto: 'compress' }),

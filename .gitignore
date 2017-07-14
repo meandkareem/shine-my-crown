@@ -1,6 +1,6 @@
 .env
-node_modules
-public
-content
-data
+node_modules/
+site/content
+site/data
 npm-debug.log
+dist/
