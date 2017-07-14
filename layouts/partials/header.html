@@ -8,7 +8,8 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/assets/all.css">
+    <link rel="stylesheet" href="/assets/style.css"/>
+
     {{ .Site.Data.settings.faviconMetaTags | safeHTML }}
     {{ if isset .Params "seometatags" }}
       {{ .Params.seometatags | safeHTML }}
@@ -18,7 +19,7 @@
 
     <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#2F3BA2">
-    
+
   </head>
   <body>
 

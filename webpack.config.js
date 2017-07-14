@@ -1,10 +1,16 @@
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: ['./assets/js/main.js', './assets/sass/main.scss'],
+  context: path.join(__dirname, "assets"),
+  entry: {
+    main: ["./js/main"]
+  },
   output: {
-    filename: './assets/all.js'
+    path: path.join(__dirname, "public/assets"),
+    publicPath: "/assets",
+    filename: "[name].js"
   },
   module: {
     rules: [
@@ -15,17 +21,17 @@ module.exports = {
         query: { presets: ['es2015'] }
       },
       {
-        test: /\.(sass|scss)$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'postcss-loader', 'sass-loader'])
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract([ // not working with "use" keyword
+            { loader: "css-loader", options: { minimize: true } },
+            { loader: "postcss-loader" },
+            { loader: "sass-loader" }
+        ])
       }
     ]
   },
   plugins: [
-    new ExtractTextPlugin({
-      filename: './assets/all.css',
-      allChunks: true,
-    }),
-
+    new ExtractTextPlugin({ filename: "style.css" }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
