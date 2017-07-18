@@ -9,6 +9,7 @@
           <a href="{{ .Permalink }}">{{ .Title }}</a>
           <p>{{ .Params.summary }}</p>
           <ul id="tags">
+
   {{ range .Params.categories }}
     <li><a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}">{{ . }}</a> </li>
   {{ end }}

@@ -7,7 +7,7 @@
     "hugo": "gulp hugo",
     "build": "dato dump && gulp build",
     "build-preview": "gulp build-preview",
-    "start": "dato check && gulp server && dato dump",
+    "start": "dato check && dato dump && gulp server",
     "lint": "eslint src"
   },
   "author": "",
