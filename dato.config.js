@@ -9,7 +9,11 @@ const htmlTag = require('html-tag');
 // <meta name="description" content="foobar" />
 
 const toHtml = (tags) => (
-  tags.map(({ tagName, attributes, content }) => (
+  tags.map(({
+    tagName,
+    attributes,
+    content
+  }) => (
     htmlTag(tagName, attributes, content)
   )).join("")
 );
@@ -33,8 +37,8 @@ module.exports = (dato, root, i18n) => {
   // Add to the existing Hugo config files some properties coming from data
   // stored on DatoCMS
 
-  root.addToDataFile('site/config.toml', 'toml', {
-      title: dato.site.globalSeo.siteName,
+  root.addToDataFile('site/config.yml', 'yaml', {
+    title: dato.site.globalSeo.siteName,
   });
 
   // Create a YAML data file to store global data about the site
@@ -55,13 +59,21 @@ module.exports = (dato, root, i18n) => {
   // type stored in DatoCMS
   root.createPost('site/content/about.md', 'yaml', {
     frontmatter: {
-      title: dato.aboutPage.title,
-      subtitle: dato.aboutPage.subtitle,
-      photo: dato.aboutPage.photo.url({ w: 800, fm: 'jpg', auto: 'compress' }),
-      seoMetaTags: toHtml(dato.aboutPage.seoMetaTags),
-      menu: { main: { weight: 100 } }
+      title: dato.about.title,
+      subtitle: dato.about.subtitle,
+      photo: dato.about.photo.url({
+        w: 800,
+        fm: 'jpg',
+        auto: 'compress'
+      }),
+      seoMetaTags: toHtml(dato.about.seoMetaTags),
+      menu: {
+        main: {
+          weight: 100
+        }
+      }
     },
-    content: dato.aboutPage.bio
+    content: dato.about.bio
   });
 
   // Create a `work` directory (or empty it if already exists)...
@@ -72,10 +84,16 @@ module.exports = (dato, root, i18n) => {
       dir.createPost(`${post.slug}.md`, 'yaml', {
         frontmatter: {
           title: post.title,
-          cover: post.cover.url({ w: 450, fm: 'jpg', auto: 'compress' }),
+          cover: post.cover.url({
+            w: 450,
+            fm: 'jpg',
+            auto: 'compress'
+          }),
           summary: post.summary,
           seoMetaTags: toHtml(post.seoMetaTags),
           categories: post.category.map(cat => cat.name),
+          tags: post.tags.map(tag => tag.name),
+          published: post.published,
           // extraImages: post.gallery.map(item =>
           //   item.url({ h: 300, fm: 'jpg', auto: 'compress' })
           // ),

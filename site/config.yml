@@ -1,0 +1,23 @@
+baseurl: "/"
+languageCode: "en-us"
+Paginate: 10
+
+menu:
+  main:
+    - Name: "Home"
+      Identifier: "home"
+      URL: "/"
+      Weight: -100
+
+    - Name: "Lifestyle"
+      Url: "/categories/lifestyle"
+      Weight: -99
+
+
+taxonomies:
+  tag: "tags"
+  category: "categories"
+
+# datocms:start
+title: Shine My Crown
+# datocms:end

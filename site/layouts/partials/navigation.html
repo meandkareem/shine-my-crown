@@ -1,7 +1,7 @@
 <nav id="menu">
   {{ $currentNode := . }} {{ range .Site.Menus.main }}
-  <li {{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} class="is-active" {{end}} >
+  <div{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} class="is-active" {{end}} >
       <a href="{{ .URL }}">{{ .Name }}</a>
-    </li>
+    </div>
   {{ end }}
 </nav>

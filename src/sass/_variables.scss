@@ -1,9 +1,10 @@
 @import "modularscale";
+@import "fonts";
 
-$font-stack-system: (
+$font-stack: (
+  "Avenir Next",
   -apple-system,
   BlinkMacSystemFont,
-  "Avenir Next",
   "Avenir",
   "Segoe UI",
   "Lucida Grande",
@@ -25,11 +26,11 @@ $font-stack-system: (
 
 $modularscale: (
   base: 1em,
-  ratio: 1.5
+  ratio: 1.414
 );
 
 // Typography
-$base-font-family: $font-stack-system;
+$base-font-family: $font-stack;
 $heading-font-family: $base-font-family;
 
 // Line height
@@ -43,10 +44,16 @@ $small-spacing: $base-spacing / 2;
 $base-z-index: 0;
 
 // Colors
-$blue: #1565c0;
+$blue: #0076FF;
 $dark-gray: #333;
 $medium-gray: #999;
 $light-gray: #ddd;
+$white: #fff;
+$black: #000;
+$yellow: #FFEC00;
+
+$username-color: $yellow;
+$tag-color: $blue;
 
 // Font Colors
 $base-font-color: $dark-gray;
@@ -69,3 +76,7 @@ $focus-outline-offset: 2px;
 // Animations
 $base-duration: 150ms;
 $base-timing: ease;
+
+
+$header-height: 60px;
+$gutter: 10px;

@@ -11,10 +11,26 @@
 
 </head>
 
-<body>
+<body class="{{ .Kind }} {{ .Section }}">
 
-  <header>
-    <a id="nav-toggle" href="#"><span></span></a>
+  <header class="main-header">
+    <div class="main-header-container">
+      <div class="logo">
+        <a href="/">Shine My Crown</a>
+      </div>
+      <div class="nav-toggle" id="menu-toggle">
+        <button class="hamburger hamburger--collapse" type="button" id="hamburger-toggle">
+          <span class="hamburger-box">
+          <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
   </header>
-  {{ partial "navigation.html" . }}
-  <main id="panel">
+
+  <div class="nav-overlay" id="nav-overlay">
+      {{ partial "navigation.html" . }}
+  </div>
+
+
+  <main id="main">
